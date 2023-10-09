@@ -112,7 +112,7 @@ export default function LoginForm() {
 					</button>
 				</div>
 
-				{register?(
+				{false?(
 					<div className='flex flex-col gap-2'>
 						<div className='flex-grow'>
 							<h3 className="font-bold text-lg mb-3">Register</h3>
@@ -124,6 +124,7 @@ export default function LoginForm() {
 								<button onClick={handleRegister} className='btn btn-base-200'>Register</button>
 							</div>
 						</div>
+						
 						<div className='divider'>OR</div>
 						<div className='flex-grow'>
 							<h3 className="font-bold text-lg mb-3">Continue using</h3>
@@ -148,7 +149,8 @@ export default function LoginForm() {
 								<button onClick={handleLogin} className='btn btn-base-200'>Log in</button>
 							</div>
 						</div>
-						<div className='divider'>OR</div>
+
+						{/* <div className='divider'>OR</div>
 						<div className='flex-grow'>
 							<h3 className="font-bold text-lg mb-3">Continue using</h3>
 							<div className='w-full'>
@@ -156,11 +158,10 @@ export default function LoginForm() {
 									<BiLogoGmail />
 									<span>GMAIL</span>
 								</button>
-								{/* <span className='text-xs text-center'>( Use Dummy Gmail )</span> */}
 							</div>
-						</div>
+						</div> */}
 
-						<span className='my-2 text-xs'>Don't have an account? <a onClick={()=>setRegister(true)} className='hover:text-white hover:cursor-pointer'>Register</a></span>
+						{/* <span className='my-2 text-xs'>Don't have an account? <a onClick={()=>setRegister(true)} className='hover:text-white hover:cursor-pointer'>Register</a></span> */}
 					</div>
 				)}
 				

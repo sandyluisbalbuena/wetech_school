@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
-// import { useDataStore } from '../Context/DataStoreContext';
-// import firebase from 'firebase/compat/app'
+import firebase from 'firebase/compat/app'
 import { BiMenu } from 'react-icons/bi';
 import { useDataStore } from '../context/DataStoreContext';
-// import { toast } from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 
 export default function Navbar({ user }) {
 	const { setTheme, themes, theme:myCurrentTheme, setModalLoginState  } = useDataStore();
@@ -51,7 +50,7 @@ export default function Navbar({ user }) {
 							<summary>
 								Themes
 							</summary>
-							<ul className="mt-10 p-2 mx-1 h-40 overflow-auto rounded-sm bg-base-200">
+							<ul className="mt-10 p-2 mx-1 h-40 overflow-auto rounded-sm bg-base-200 shadow-md shadow-primary">
 								{themes.map((theme)=>(
 									<li className={`w-full uppercase  ${myCurrentTheme==theme?'bg-base-300':''}`} key={ theme } onClick={() => handleClick(theme)} ><a>{ theme }</a></li>
 								))}
