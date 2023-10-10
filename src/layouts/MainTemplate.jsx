@@ -10,10 +10,10 @@ import LoginForm from '../components/LoginForm';
 
 export default function MainTemplate() {
 	const { theme, userData, setUserData } = useDataStore();
-	const [user] = useAuthState(firebase.auth());
+	const [ user ] = useAuthState(firebase.auth());
 
 	useEffect(() => {
-		if (user) {
+		if ( user ) {
 			const userRef = firebase.database().ref(`users/${user.uid}`);
 			userRef.on('value', (snapshot) => {
 				const userDataFromDB = snapshot.val();

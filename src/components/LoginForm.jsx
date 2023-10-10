@@ -105,7 +105,7 @@ export default function LoginForm() {
 	return (
 		<dialog className={`modal ${modalLoginState?'modal-open':null} backdrop-blur-sm`}>
 		
-			<div className="modal-box w-11/12 max-w-5xl overflow-hidden shadow-md shadow-base-content">
+			<div className="modal-box w-11/12 max-w-5xl overflow-hidden shadow-md shadow-primary">
 				<div className='flex justify-end'>
 					<button onClick={closeModal} className='btn btn-ghost btn-sm justify-self-end'>
 						<AiOutlineClose />
@@ -124,7 +124,7 @@ export default function LoginForm() {
 								<button onClick={handleRegister} className='btn btn-base-200'>Register</button>
 							</div>
 						</div>
-						
+
 						<div className='divider'>OR</div>
 						<div className='flex-grow'>
 							<h3 className="font-bold text-lg mb-3">Continue using</h3>

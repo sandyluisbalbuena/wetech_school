@@ -50,24 +50,54 @@ export default function Navbar({ user }) {
 							<summary>
 								Themes
 							</summary>
-							<ul className="mt-10 p-2 mx-1 h-40 overflow-auto rounded-sm bg-base-200 shadow-md shadow-primary">
+							<ul className="mt-5 p-2 mx-1 h-40 overflow-auto rounded-sm bg-base-200 shadow-md shadow-primary">
 								{themes.map((theme)=>(
 									<li className={`w-full uppercase  ${myCurrentTheme==theme?'bg-base-300':''}`} key={ theme } onClick={() => handleClick(theme)} ><a>{ theme }</a></li>
 								))}
 							</ul>
 						</details>  
 					</li>
+
+					{user?(
+					<li>
+						{/* <details>
+							<summary>
+								{user.username}
+							</summary>
+							<ul className="mt-10 p-2 rounded-sm bg-base-200 shadow-md shadow-primary me-10">
+								<li className={`w-full uppercase`} onClick={ handleLogout } ><a>Logout</a></li>
+							</ul>
+						</details>   */}
+						<summary onClick={handleLogout}>
+							Sign out
+						</summary>
+					</li>
+					):(
+					<li>
+						{/* <details> */}
+							<summary onClick={openModalLogin}>
+								Sign In
+							</summary>
+							{/* <ul className="mt-10 p-2 rounded-sm bg-base-200 shadow-md shadow-primary me-10">
+								<li className={`w-full uppercase`} onClick={ handleLogout } ><a>Logout</a></li>
+							</ul> */}
+						{/* </details>   */}
+					</li>
+					// <button onClick={openModalLogin} className="btn btn-ghost btn-sm">
+					// 	Sign In
+					// </button>
+					)}	
 				</ul>
 				
 				
-				{user?(
+				{/* {user?(
 					<div className="dropdown dropdown-end">
-						<label tabIndex={0} className="btn bg-base-100 btn-circle avatar">
-							<div className="w-8 rounded-full">
-								<img src={ '/assets/img/userIconsV2/'+user.image+'.png' }/>
+						<label tabIndex={0} className="btn bg-base-100 hover:bg-base-200">
+							<div className="w-7 rounded">
+								{user.username}
 							</div>
 						</label>
-						<ul tabIndex={0} className="mt-5 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-sm bg-base-200 w-fit">
+						<ul tabIndex={0} className="shadow-primary mt-5 z-[1] p-2 shadow-md menu menu-sm dropdown-content rounded-sm bg-base-200 w-fit">
 							<li><a onClick={ handleLogout }>Logout</a></li>
 						</ul>
 					</div>
@@ -75,7 +105,7 @@ export default function Navbar({ user }) {
 					<button onClick={openModalLogin} className="btn btn-ghost btn-sm">
 						Sign In
 					</button>
-				)}					
+				)}*/}
 
 			</div>
 		</div>
