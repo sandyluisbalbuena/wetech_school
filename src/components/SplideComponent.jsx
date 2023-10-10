@@ -44,24 +44,26 @@ export default function SplideComponent() {
 		<Splide
 		options={{
 			type: "loop",
-			gap: "90px",
-			// drag: "free",
+			gap: isSmallScreen?"50px":"90px",
+			drag: "free",
 			arrows: false,
 			focus:"center",
 			pagination: false,
 			perPage: perPage,
-			// autoScroll: {
-			// 	pauseOnHover: true,
-			// 	pauseOnFocus: false,
-			// 	rewind: false,
-			// 	speed: .2
-			// }
+			autoScroll: {
+				pauseOnHover: true,
+				pauseOnFocus: false,
+				rewind: false,
+				speed: .3
+			}
 		}}
-		// extensions={{ AutoScroll }}
+		extensions={{ AutoScroll }}
 		>
 			{imageUrls.map((imageUrl, index)=>(
 				<SplideSlide key={index}>
-					<img src={ imageUrl } className='h-[50vh] mask mask-squircle' alt="Image 2"/>
+					<div className='shadow-md shadow-secondary m-2 lg:m-5 bg-primary rounded-md hover:scale-110 transition-transform duration-200'>
+						<img src={ imageUrl } className='h-[50vh] mask mask-parallelogram ' alt="Image 2"/>
+					</div>
 				</SplideSlide>
 			))}
 		</Splide>
