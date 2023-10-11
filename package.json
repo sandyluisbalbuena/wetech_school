@@ -13,6 +13,7 @@
     "@react-hook/media-query": "^1.1.1",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "animate.css": "^4.1.1",
     "axios": "^1.5.1",
     "firebase": "^10.4.0",
     "framer-motion": "^10.16.4",
