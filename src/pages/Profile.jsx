@@ -38,8 +38,8 @@ export default function Profile() {
 							<div className="card h-full w-full bg-base-200 shadow-md shadow-primary">
 								<figure><img className='h-full' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Shoes" /></figure>
 								<div className="card-body">
-									<h2 className="card-title">Shoes!</h2>
-									<p>If a dog chews shoes whose shoes does he choose?</p>
+									<h2 className="card-title">John Doe</h2>
+									<p>Any Info</p>
 								</div>
 							</div>
 						</div>
