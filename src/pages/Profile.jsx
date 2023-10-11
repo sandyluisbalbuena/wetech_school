@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import SplideCourseComponent from '../components/SplideCourseComponent';
 
 export default function Profile() {
 
@@ -51,9 +52,8 @@ export default function Profile() {
 						<div className='my-10 h-[50vh]'>
 							<div className="card h-full w-full bg-base-200 shadow-md shadow-primary rounded-md">
 								{/* <figure><img src="https://images.unsplash.com/photo-1516397281156-ca07cf9746fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG9ubGluZSUyMGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Shoes" /></figure> */}
-								<div className="card-body">
-									<h2 className="card-title">Shoes!</h2>
-									<p>If a dog chews shoes whose shoes does he choose?</p>
+								<div className="card-body h-full">
+									<SplideCourseComponent />
 								</div>
 							</div>
 						</div>
