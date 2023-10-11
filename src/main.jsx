@@ -8,6 +8,7 @@ import { DataStoreProvider } from './context/DataStoreContext'
 import Firebase from './Firebase/FirebaseComponent'
 import { Toaster } from 'react-hot-toast'
 import Profile from './pages/Profile'
+import SubTemplate from './layouts/SubTemplate'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <DataStoreProvider>
@@ -20,7 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={ <MainTemplate /> }>
           <Route path='/' element={ <Home /> }/>
-          <Route path='/profile' element={ <Profile /> }/>
+          <Route element={ <SubTemplate /> }>
+            <Route path='/profile' element={ <Profile /> }/>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
