@@ -23,12 +23,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route element={ <MainTemplate /> }>
           <Route path='/' element={ <Home /> }/>
           <Route element={ <SubTemplate /> }>
-            <ProtectedRoute
+            {/* <ProtectedRoute
               path="/profile"
               component={ <Profile /> }
               isAuthenticated={true}
-            />
-            {/* <Route path='/profile' element={ <Profile /> }/> */}
+            /> */}
+            <Route path='/profile' element={ <Profile /> }/>
           </Route>
         </Route>
       </Routes>

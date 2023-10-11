@@ -50,7 +50,7 @@ export default function Navbar({ user }) {
 							<summary>
 								Themes
 							</summary>
-							<ul className="mt-5 p-2 mx-1 h-40 overflow-auto rounded-sm bg-base-200 shadow-md shadow-primary">
+							<ul className="mt-5 p-2 mx-1 h-40 overflow-auto rounded-sm bg-base-200 shadow-md shadow-secondary">
 								{themes.map((theme)=>(
 									<li className={`w-full uppercase  ${myCurrentTheme==theme?'bg-base-300':''}`} key={ theme } onClick={() => handleClick(theme)} ><a>{ theme }</a></li>
 								))}

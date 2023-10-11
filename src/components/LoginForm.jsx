@@ -105,7 +105,7 @@ export default function LoginForm() {
 	return (
 		<dialog className={`modal ${modalLoginState?'modal-open':null} backdrop-blur-sm`}>
 		
-			<div className="modal-box w-11/12 max-w-5xl overflow-hidden shadow-md shadow-primary">
+			<div className="modal-box w-11/12 max-w-5xl overflow-hidden shadow-md shadow-secondary">
 				<div className='flex justify-end'>
 					<button onClick={closeModal} className='btn btn-ghost btn-sm justify-self-end'>
 						<AiOutlineClose />

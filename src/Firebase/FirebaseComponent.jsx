@@ -17,8 +17,4 @@ export default function Firebase() {
 	};
 	
 	firebase.initializeApp(firebaseConfig);
-
-	return (
-		<></>
-	)
 }
