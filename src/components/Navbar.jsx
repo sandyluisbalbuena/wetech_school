@@ -7,16 +7,12 @@ import { useDataStore } from '../context/DataStoreContext';
 import { toast } from 'react-hot-toast'
 
 export default function Navbar({ user }) {
-	const { setTheme, themes, theme:myCurrentTheme, setModalLoginState  } = useDataStore();
+	const { setTheme, themes, theme:myCurrentTheme, setModalLoginState, setUserData  } = useDataStore();
 
 	const handleClick = (theme) => {
 		localStorage.setItem('localTheme', theme)
 		setTheme(theme);
 	}
-
-	// const openModal = () => {
-	// 	setModalState(true)
-	// }
 
 	const openModalLogin = () => {
 		setModalLoginState(true)
@@ -31,6 +27,8 @@ export default function Navbar({ user }) {
 				error: <b>Something went wrong.</b>,
 			}
 		);
+
+		setUserData(null)
 	}
 
 	return (
@@ -39,13 +37,13 @@ export default function Navbar({ user }) {
 				<Link to='/' className="btn btn-ghost normal-case text-xl">WeTech</Link>
 			</div>
 
-			{/* <div className="hidden md:flex flex-none">
+			<div className="hidden md:flex flex-none">
 				<Link to='/' className="btn btn-ghost normal-case text-sm">Services</Link>
-			</div> */}
+			</div>
 
 			<div className="hidden md:flex flex-none">
 				<ul className="menu menu-horizontal px-1">
-					<li>
+					{/* <li>
 						<details>
 							<summary>
 								Themes
@@ -56,7 +54,7 @@ export default function Navbar({ user }) {
 								))}
 							</ul>
 						</details>  
-					</li>
+					</li> */}
 
 					{user?(
 					<li>

@@ -4,7 +4,7 @@ const DataStoreContext = createContext();
 
 export function DataStoreProvider({ children }) {
 	const [ theme, setTheme ] = useState(
-		localStorage.getItem('localTheme') || 'luxury'
+		localStorage.getItem('localTheme') || 'cupcake'
 	);
 	const [ modalLoginState, setModalLoginState ] = useState(false)
 	const [ userData, setUserData ] = useState(null)
