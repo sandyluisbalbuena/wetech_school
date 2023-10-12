@@ -10,6 +10,9 @@ import { Toaster } from 'react-hot-toast'
 import Profile from './pages/Profile'
 import SubTemplate from './layouts/SubTemplate'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Activity from './pages/Activity'
+import About from './pages/About'
+import Course from './pages/Course'
 
 
 
@@ -36,6 +39,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/' element={ <Home /> }/>
             <Route element={ <SubTemplate /> }>
               <Route path='/profile' element={ <Profile /> }/>
+              <Route path='/activity' element={ <Activity /> }/>
+              <Route path='/course' element={ <Course /> }/>
+              <Route path='/about' element={ <About /> }/>
             </Route>
           </Route>
         </Routes>
