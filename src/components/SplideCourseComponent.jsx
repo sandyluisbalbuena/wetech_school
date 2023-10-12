@@ -3,46 +3,48 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useMediaQuery } from '@react-hook/media-query';
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
-import { useDataStore } from '../context/DataStoreContext';
 import 'animate.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
-
-export default function SplideCourseComponent({ userData }) {
-	// const { userData } = useDataStore()
-	const [mates, setMates] = useState([]);
+import { useQuery } from '@tanstack/react-query'
 
 
-	useEffect(() => {
-		if(userData){
-			setTimeout(() => {
-				const batchValue = userData.batch;
-				const database = firebase.database();
-				const usersRef = database.ref('users');
-				// Create a query to get users with the specified batch value
-				usersRef.orderByChild('batch').equalTo(batchValue).on('value', (snapshot) => {
-					const usersData = [];
-					snapshot.forEach((childSnapshot) => {
-						const userData = childSnapshot.val();
-						usersData.push(userData);
-					});
-					setMates(usersData);
-		
-					console.log(mates)
-				});
-				
-			}, 200);
-		}
+export default function SplideCourseComponent({ user }) {
+
+
+	const fetchingBatchMates = async () => {
+		const batchValue = user.batch;
+
+
+
+		const database = firebase.database();
+		const usersRef = database.ref('users');
 	
-	}, [userData]);
+		try {
+			const snapshot = await usersRef.orderByChild('batch').equalTo(batchValue).once('value');
+			const usersData = [];
+			
+			snapshot.forEach((childSnapshot) => {
+				const userData = childSnapshot.val();
+
+				if (userData.username !== user.username) {
+					usersData.push(userData);
+				}
+			});
+	
+			return usersData;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	const {data:mates, isLoading} = useQuery({queryKey:['fetchingBatchMates', user.username], queryFn:fetchingBatchMates, refetchInterval:60000})
 
 	const isSmallScreen = useMediaQuery('(max-width: 640px)');
 	const isMediumScreen = useMediaQuery('(max-width: 768px)');
 	const perPage = isSmallScreen ? 2 : (isMediumScreen ? 4 : 5);
 
 	const items = [
-		"courses",
 		"batchmates",
+		"courses",
 		"activities",
 	]
 
@@ -50,7 +52,7 @@ export default function SplideCourseComponent({ userData }) {
 		<div className='h-full'>
 		<Splide
 			options={{
-				type: 'loop',
+				type: 'slide',
 				gap: '40px',
 				arrows: true,
 				focus:"center",
@@ -66,14 +68,28 @@ export default function SplideCourseComponent({ userData }) {
 
 							{item == 'batchmates'?(
 								<>
-								{mates.map((mate)=>(
-									<div key={ mate.username } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer tooltip" data-tip={ mate.username }>
-										<div className="card-body">
-											<img className='h-full' loading='lazy' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Shoes" />
-											{/* <p>{ mate.username }</p> */}
+								{!isLoading?(
+									<>
+										{mates.map((mate)=>(
+											<div key={ mate.username } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer tooltip" data-tip={ mate.username }>
+												<div className="card-body">
+													<img className='h-full' loading='lazy' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Shoes" />
+													{/* <p>{ mate.username }</p> */}
+												</div>
+											</div>
+										))}
+									</>
+								):(
+									<>
+										{[1,2,3,4,5,6].map((mate)=>(
+										<div key={ mate+"random" } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
+											<div className="card-body">
+												<img className='h-full' loading='lazy' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Shoes" />
+											</div>
 										</div>
-									</div>
-								))}
+										))}
+									</>
+								)}
 								</>
 							):(
 								<>
@@ -89,13 +105,13 @@ export default function SplideCourseComponent({ userData }) {
 										</>
 									):(
 										<>
-											{/* {[1,2,3,4,5,6,7,8,9,10,11,12].map((activity)=>(
+											{[1,2,3,4,5,6,7,8,9,10,11,12].map((activity)=>(
 												<div key={ "Act"+index } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
 													<div className="card-body">
 														<h2 className="card-title font-extrabold uppercase text-1xl text-center text-blue-700">Act{ activity }</h2>
 													</div>
 												</div>
-											))} */}
+											))}
 										</>
 									)}
 								</>

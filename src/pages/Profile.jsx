@@ -55,9 +55,9 @@ export default function Profile() {
 							<div className="card h-full w-full bg-base-200 shadow-md shadow-primary rounded-md">
 								{/* <figure><img src="https://images.unsplash.com/photo-1516397281156-ca07cf9746fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG9ubGluZSUyMGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Shoes" /></figure> */}
 								<div className="card-body h-full">
-									{/* {userData?( */}
-										<SplideCourseComponent userData={ userData } />
-									{/* ):null} */}
+									{userData?(
+										<SplideCourseComponent user={ userData } />
+									):null}
 								</div>
 							</div>
 						</div>

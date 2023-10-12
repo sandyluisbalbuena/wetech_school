@@ -8,12 +8,16 @@ import toast from 'react-hot-toast'
 export default function SubTemplate() {
 	const { userData } = useDataStore()
 	const navigate = useNavigate()
+	
+
 
 
 	useEffect(() => {
 		if(!userData){
-			navigate('/');
-			toast.error('You must sign in first!')
+			if(localStorage.getItem('isLoggedIn')=='false'){
+				navigate('/');
+				toast.error('You must sign in first!')
+			}
 		}
 	}, [userData])
 

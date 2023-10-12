@@ -27,7 +27,7 @@ export default function Navbar({ user }) {
 				error: <b>Something went wrong.</b>,
 			}
 		);
-
+		localStorage.setItem('isLoggedIn', false)
 		setUserData(null)
 	}
 

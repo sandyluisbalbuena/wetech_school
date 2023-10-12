@@ -9,29 +9,38 @@ import Firebase from './Firebase/FirebaseComponent'
 import { Toaster } from 'react-hot-toast'
 import Profile from './pages/Profile'
 import SubTemplate from './layouts/SubTemplate'
-import ProtectedRoute from './components/ProtectedRoute'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <DataStoreProvider>
-    <Toaster
-        position="top-right"
-        reverseOrder={false}
-    />
-    <Firebase />
-    <BrowserRouter>
-      <Routes>
-        <Route element={ <MainTemplate /> }>
-          <Route path='/' element={ <Home /> }/>
-          <Route element={ <SubTemplate /> }>
-            {/* <ProtectedRoute
-              path="/profile"
-              component={ <Profile /> }
-              isAuthenticated={true}
-            /> */}
-            <Route path='/profile' element={ <Profile /> }/>
+  <QueryClientProvider client={ queryClient }>
+    <DataStoreProvider>
+      <Toaster
+          position="top-right"
+          reverseOrder={false}
+      />
+      <Firebase />
+      <BrowserRouter>
+        <Routes>
+          <Route element={ <MainTemplate /> }>
+            <Route path='/' element={ <Home /> }/>
+            <Route element={ <SubTemplate /> }>
+              <Route path='/profile' element={ <Profile /> }/>
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </DataStoreProvider>
+        </Routes>
+      </BrowserRouter>
+    </DataStoreProvider>
+  </QueryClientProvider>
+
 )
