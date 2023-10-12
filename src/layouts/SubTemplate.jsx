@@ -11,21 +11,15 @@ export default function SubTemplate() {
 
 
 	useEffect(() => {
-		if(userData){
-			console.log(userData)
-		}else{
+		if(!userData){
 			navigate('/');
 			toast.error('You must sign in first!')
-
 		}
 	}, [userData])
-	
-
-
 
 	return (
 		<div className='m-2 lg:m-5'>
-			<Outlet />
+			<Outlet user={ userData }/>
 		</div>
 	)
 }

@@ -37,9 +37,9 @@ export default function Navbar({ user }) {
 				<Link to='/' className="btn btn-ghost normal-case text-xl">WeTech</Link>
 			</div>
 
-			<div className="hidden md:flex flex-none">
+			{/* <div className="hidden md:flex flex-none">
 				<Link to='/' className="btn btn-ghost normal-case text-sm">Services</Link>
-			</div>
+			</div> */}
 
 			<div className="hidden md:flex flex-none">
 				<ul className="menu menu-horizontal px-1">
