@@ -60,7 +60,7 @@ export default function Navbar({ user }) {
 						<Link to='/about' className="normal-case text-sm">About</Link>
 					</li>
 
-					{/* <li>
+					<li>
 						<details>
 							<summary>
 								Themes
@@ -71,7 +71,7 @@ export default function Navbar({ user }) {
 								))}
 							</ul>
 						</details>  
-					</li> */}
+					</li>
 
 					{user?(
 					<li>

@@ -22,3 +22,22 @@
 		@apply bg-base-content/20 rounded
 	}
 }
+
+/* CSS for slide transition */
+.page-slide-enter {
+	transform: translateX(100%);
+}
+
+.page-slide-enter-active {
+	transform: translateX(0);
+	transition: transform 300ms;
+}
+
+.page-slide-exit {
+	transform: translateX(0);
+}
+
+.page-slide-exit-active {
+	transform: translateX(-100%);
+	transition: transform 300ms;
+}

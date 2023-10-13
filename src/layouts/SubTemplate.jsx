@@ -4,12 +4,12 @@ import { useDataStore } from '../context/DataStoreContext'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 export default function SubTemplate() {
 	const { userData } = useDataStore()
 	const navigate = useNavigate()
-	const location = useLocation()
+	// const location = useLocation()
 	
 	useEffect(() => {
 		if(!userData){
@@ -23,7 +23,7 @@ export default function SubTemplate() {
 	return (
 		<>
 			{/* Use CSS to style your images for smooth transitions */}
-			<img
+			{/* <img
 				loading="lazy"
 				className={`fixed top-0 z-0 mask mask-parallelogram h-screen transition-opacity duration-1000 ${
 					location.pathname.includes('profile') ? 'opacity-100' : 'opacity-0'
@@ -50,7 +50,7 @@ export default function SubTemplate() {
 					location.pathname.includes('about') ? 'opacity-100' : 'opacity-0'
 				}`}
 				src="./assets/images/about-big.avif"
-			/>
+			/> */}
 
 			<div className="m-2 lg:m-5">
 				<Outlet user={userData} />

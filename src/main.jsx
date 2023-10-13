@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Activity from './pages/Activity'
 import About from './pages/About'
 import Course from './pages/Course'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,17 +33,21 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       />
       <Firebase />
       <BrowserRouter>
-        <Routes>
-          <Route element={ <MainTemplate /> }>
-            <Route path='/' element={ <Home /> }/>
-            <Route element={ <SubTemplate /> }>
-              <Route path='/profile' element={ <Profile /> }/>
-              <Route path='/activity' element={ <Activity /> }/>
-              <Route path='/course' element={ <Course /> }/>
-              <Route path='/about' element={ <About /> }/>
-            </Route>
-          </Route>
-        </Routes>
+        <TransitionGroup>
+          <CSSTransition key={location.key} classNames="fade" timeout={300}>
+            <Routes>
+              <Route element={ <MainTemplate /> }>
+                <Route path='/' element={ <Home /> }/>
+                <Route element={ <SubTemplate /> }>
+                  <Route path='/profile' element={ <Profile /> }/>
+                  <Route path='/activity' element={ <Activity /> }/>
+                  <Route path='/course' element={ <Course /> }/>
+                  <Route path='/about' element={ <About /> }/>
+                </Route>
+              </Route>
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
       </BrowserRouter>
     </DataStoreProvider>
   </QueryClientProvider>
