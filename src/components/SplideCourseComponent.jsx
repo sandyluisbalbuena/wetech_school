@@ -105,7 +105,7 @@ export default function SplideCourseComponent({ user }) {
 										</>
 									):(
 										<>
-											{[1,2,3,4,5,6,7,8,9,10,11,12].map((activity)=>(
+											{[1].map((activity)=>(
 												<div key={ "Act"+index } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
 													<div className="card-body">
 														<h2 className="card-title font-extrabold uppercase text-1xl text-center text-blue-700">Act{ activity }</h2>

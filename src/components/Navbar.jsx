@@ -32,7 +32,7 @@ export default function Navbar({ user }) {
 	}
 
 	return (
-		<div className="navbar bg-base-300 z-10 fixed bg-opacity-95 px-0 md:px-5">
+		<div className="navbar bg-base-300 z-10 fixed px-0 md:px-5">
 			<div className="flex-1">
 				<img className='h-12' src="/assets/logo/logo2.png" alt="" />
 				<Link to='/' className="btn btn-ghost normal-case text-xl">WeTech</Link>

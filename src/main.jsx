@@ -14,8 +14,6 @@ import Activity from './pages/Activity'
 import About from './pages/About'
 import Course from './pages/Course'
 
-
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
