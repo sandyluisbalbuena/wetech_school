@@ -3,12 +3,10 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useMediaQuery } from '@react-hook/media-query';
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
-import 'animate.css';
 import { useQuery } from '@tanstack/react-query'
 
 
 export default function SplideProfileComponent({ user }) {
-
 
 	const fetchingBatchMates = async () => {
 		const batchValue = user.batch;
@@ -42,82 +40,92 @@ export default function SplideProfileComponent({ user }) {
 		"batchmates",
 		"courses",
 		"activities",
+		"schedule",
 	]
 
 	return (
 		<div className='h-full'>
-		<Splide
-			options={{
-				type: 'slide',
-				gap: '40px',
-				arrows: true,
-				focus:"center",
-				pagination: false,
-				perPage: 1,
-			}}
-		>
-			{items.map((item, index)=>(
-				<SplideSlide key={ index }>
-					<div className='h-[50vh] relative shadow-md shadow-secondary m-2 lg:m-5 bg-primary rounded-md px-5'>
-						<p className='me-2 text-4xl lg:text-4xl text-base-100 font-semibold uppercase absolute top-0 left-0 w-full h-full flex justify-center mt-2'>{ item }</p>
-						<div className='grid grid-cols-6 gap-12 mx-10 py-20'>
+			<Splide
+				options={{
+					type: 'slide',
+					gap: '40px',
+					arrows: true,
+					focus:"center",
+					pagination: false,
+					perPage: 1,
+				}}
+			>
+				{items.map((item, index)=>(
+					<SplideSlide key={ index }>
+						<div className='h-[50vh] relative shadow-md shadow-secondary m-2 lg:m-5 bg-primary rounded-md px-5'>
+							<p className='me-2 text-4xl lg:text-4xl text-base-100 font-semibold uppercase absolute top-0 left-0 w-full h-full flex justify-center mt-2'>{ item }</p>
+							<div className='grid grid-cols-6 gap-12 mx-10 py-20'>
 
-							{item == 'batchmates'?(
-								<>
-								{!isLoading?(
+								{item == 'batchmates'?(
 									<>
-										{mates.map((mate)=>(
-											<div key={ mate.username } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer tooltip" data-tip={ mate.username }>
-												<div className="card-body">
-													<img className='h-full' loading='lazy' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Shoes" />
-													{/* <p>{ mate.username }</p> */}
-												</div>
-											</div>
-										))}
-									</>
-								):(
-									<>
-										{[1,2,3,4,5,6].map((mate)=>(
-										<div key={ mate+"random" } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
-											<div className="card-body">
-												<img className='h-full' loading='lazy' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png" alt="Shoes" />
-											</div>
-										</div>
-										))}
-									</>
-								)}
-								</>
-							):(
-								<>
-									{item == 'courses'?(
+									{!isLoading?(
 										<>
-											{['C++','Web'].map((unit)=>(
-												<div key={ unit } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
-													<div className="card-body">
-														<h2 className="card-title font-extrabold uppercase text-2xl text-center text-blue-700">{ unit }</h2>
+											{mates.map((mate)=>(
+												<div key={ mate.firstname } className="card animate__animated animate__fadeIn bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer tooltip capitalize" data-tip={ mate.firstname }>
+													<div className="card-body p-2">
+														<img className='h-full' loading='lazy' src={"./assets/avatars/"+mate?.image+".png"} alt="Shoes" />
+														{/* <p>{ mate.username }</p> */}
 													</div>
 												</div>
 											))}
 										</>
 									):(
 										<>
-											{[1].map((activity)=>(
-												<div key={ "Act"+index } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
-													<div className="card-body">
-														<h2 className="card-title font-extrabold uppercase text-1xl text-center text-blue-700">Act{ activity }</h2>
-													</div>
+											{[1,2,3,4,5,6].map((mate)=>(
+											<div key={ mate+"random" } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
+												<div className="card-body">
+													<img className='h-full' loading='lazy' src={"./assets/avatars/"+mate?.image+".png"} alt="Shoes" />
 												</div>
+											</div>
 											))}
 										</>
 									)}
-								</>
-							)}
+									</>
+								):null}
+								{item == 'courses'?(
+									<>
+										{['C++','Web'].map((unit)=>(
+											<div key={ unit } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
+												<div className="card-body">
+													<h2 className="card-title font-extrabold uppercase text-2xl text-center text-blue-700">{ unit }</h2>
+												</div>
+											</div>
+										))}
+									</>
+								):null}
+								{item == 'activities'?(
+									<>
+										{[1].map((activity)=>(
+											<div key={ "Act"+index } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
+												<div className="card-body">
+													<h2 className="card-title font-extrabold uppercase text-1xl text-center text-blue-700">Act{ activity }</h2>
+												</div>
+											</div>
+										))}
+									</>
+								):null}
+								{item == 'schedule'?(
+									<>
+										{/* {[1].map((activity)=>(
+											<div key={ "Act"+index } className="card animate__animated animate__fadeIn animate__delay-1s bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer">
+												<div className="card-body">
+													<h2 className="card-title font-extrabold uppercase text-1xl text-center text-blue-700">Act{ activity }</h2>
+												</div>
+											</div>
+										))} */}
+									</>
+								):null}
 
+							</div>
 						</div>
-					</div>
-				</SplideSlide>
-			))}
-		</Splide>
+					</SplideSlide>
+				))}
+			</Splide>
 		</div>
 	)
 }

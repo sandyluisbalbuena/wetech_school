@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import SplideAboutComponent from '../components/SplideAboutComponent';
 
 export default function About() {
 	const container = {
@@ -34,12 +35,11 @@ export default function About() {
 					<motion.li className="item" variants={item}>
 						<div className='my-10 h-[50vh]'>
 							<div className="card h-full w-full bg-base-200/95 shadow-md shadow-primary rounded-md">
-								<figure className='p-10'>
-									<img className='h-full rounded-md' src="./assets/images/c++.png" alt="Shoes" />
+								<figure>
+									<img className='rounded-md w-full h-full' src="./assets/logo/logo1.png" />
 								</figure>
 								<div className="card-body">
 									<h2 className="card-title text-md"></h2>
-									<p className='text-xs'><span className='font-bold uppercase'>unit#</span></p>
 								</div>
 							</div>
 						</div>
@@ -51,9 +51,7 @@ export default function About() {
 						<div className='my-10 h-[50vh]'>
 							<div className="card h-full w-full bg-base-200/95 shadow-md shadow-primary rounded-md">
 								<div className="card-body h-full">
-									{/* {userData?(
-										<SplideCourseComponent user={ userData } />
-									):null} */}
+									<SplideAboutComponent />
 								</div>
 							</div>
 						</div>

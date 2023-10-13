@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion"
+import SplideActivityComponent from '../components/SplideActivityComponent';
 
 export default function Activity() {
 	const container = {
@@ -51,9 +52,7 @@ export default function Activity() {
 						<div className='my-10 h-[50vh]'>
 							<div className="card h-full w-full bg-base-200/95 shadow-md shadow-primary rounded-md">
 								<div className="card-body h-full">
-									{/* {userData?(
-										<SplideCourseComponent user={ userData } />
-									):null} */}
+									<SplideActivityComponent />
 								</div>
 							</div>
 						</div>

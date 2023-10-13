@@ -8,6 +8,7 @@ export function DataStoreProvider({ children }) {
 	);
 	const [ modalLoginState, setModalLoginState ] = useState(false)
 	const [ userData, setUserData ] = useState(null)
+	const [ selectedUnit, setSelectedUnit ] = useState(null)
 
 	const themes = [
 		"light",
@@ -50,6 +51,8 @@ export function DataStoreProvider({ children }) {
 			setModalLoginState, 
 			userData, 
 			setUserData,
+			selectedUnit,
+			setSelectedUnit,
 		}}>
 			{children}
 		</DataStoreContext.Provider>
