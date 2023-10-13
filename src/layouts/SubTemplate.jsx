@@ -22,14 +22,40 @@ export default function SubTemplate() {
 
 	return (
 		<>
-			{ location.pathname.includes('profile')&&<img loading='lazy' className='fixed top-0 z-0 mask mask-parallelogram h-screen animate__animated animate__fadeIn' src="./assets/images/profile-big.avif" alt="" /> }
-			{ location.pathname.includes('course')&&<img loading='lazy' className='fixed top-0 z-0 mask mask-parallelogram h-screen animate__animated animate__fadeIn' src="./assets/images/course-big.avif" alt="" /> }
-			{ location.pathname.includes('activity')&&<img loading='lazy' className='fixed top-0 z-0 mask mask-parallelogram h-screen animate__animated animate__fadeIn' src="./assets/images/activity.avif" alt="" /> }
-			{ location.pathname.includes('about')&&<img loading='lazy' className='fixed top-0 z-0 mask mask-parallelogram h-screen animate__animated animate__fadeIn' src="./assets/images/about-big" alt="" /> }
-			
-			<div className='m-2 lg:m-5'>
-				<Outlet user={ userData }/>
+			{/* Use CSS to style your images for smooth transitions */}
+			<img
+				loading="lazy"
+				className={`fixed top-0 z-0 mask mask-parallelogram h-screen transition-opacity duration-1000 ${
+					location.pathname.includes('profile') ? 'opacity-100' : 'opacity-0'
+				}`}
+				src="./assets/images/profile-big.avif"
+			/>
+			<img
+				loading="lazy"
+				className={`fixed top-0 z-0 mask mask-parallelogram h-screen transition-opacity duration-1000 ${
+					location.pathname.includes('course') ? 'opacity-100' : 'opacity-0'
+				}`}
+				src="./assets/images/course-big.avif"
+			/>
+			<img
+				loading="lazy"
+				className={`fixed top-0 z-0 mask mask-parallelogram h-screen transition-opacity duration-1000 ${
+					location.pathname.includes('activity') ? 'opacity-100' : 'opacity-0'
+				}`}
+				src="./assets/images/activity-big.avif"
+			/>
+			<img
+				loading="lazy"
+				className={`fixed top-0 z-0 mask mask-parallelogram h-screen transition-opacity duration-1000 ${
+					location.pathname.includes('about') ? 'opacity-100' : 'opacity-0'
+				}`}
+				src="./assets/images/about-big.avif"
+			/>
+
+			<div className="m-2 lg:m-5">
+				<Outlet user={userData} />
 			</div>
 		</>
+
 	)
 }

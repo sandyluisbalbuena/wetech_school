@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
-import SplideCourseComponent from '../components/SplideCourseComponent';
 import { useDataStore } from '../context/DataStoreContext';
+import SplideProfileComponent from '../components/SplideProfileComponent';
 
 export default function Profile() {
 	const { userData } = useDataStore()
@@ -19,9 +19,9 @@ export default function Profile() {
 	};
 	
 	const item = {
-		hidden: { y: 20, opacity: 0 },
+		hidden: { x: 500, opacity: 0 },
 		visible: {
-			y: 0,
+			x: 0,
 			opacity: 1
 		}
 	};
@@ -56,7 +56,7 @@ export default function Profile() {
 								{/* <figure><img src="https://images.unsplash.com/photo-1516397281156-ca07cf9746fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG9ubGluZSUyMGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Shoes" /></figure> */}
 								<div className="card-body h-full">
 									{userData?(
-										<SplideCourseComponent user={ userData } />
+										<SplideProfileComponent user={ userData } />
 									):null}
 								</div>
 							</div>

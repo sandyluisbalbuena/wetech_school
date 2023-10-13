@@ -32,18 +32,34 @@ export default function Navbar({ user }) {
 	}
 
 	return (
-		<div className="navbar bg-base-300 z-10 fixed px-0 md:px-5">
+		<div className="navbar bg-base-300/95 z-10 fixed px-0 md:px-5">
 			<div className="flex-1">
 				<img className='h-12' src="/assets/logo/logo2.png" alt="" />
 				<Link to='/' className="btn btn-ghost normal-case text-xl">WeTech</Link>
 			</div>
 
 			{/* <div className="hidden md:flex flex-none">
-				<Link to='/' className="btn btn-ghost normal-case text-sm">Services</Link>
+				<Link to='/profile' className="btn btn-ghost normal-case text-sm">Profile</Link>
+			</div>
+			<div className="hidden md:flex flex-none">
+				<Link to='/course' className="btn btn-ghost normal-case text-sm">Course</Link>
 			</div> */}
 
 			<div className="hidden md:flex flex-none">
 				<ul className="menu menu-horizontal px-1">
+					<li>
+						<Link to='/profile' className="normal-case text-sm">Profile</Link>
+					</li>
+					<li>
+						<Link to='/course' className="normal-case text-sm">Course</Link>
+					</li>
+					<li>
+						<Link to='/activity' className="normal-case text-sm">Activity</Link>
+					</li>
+					<li>
+						<Link to='/about' className="normal-case text-sm">About</Link>
+					</li>
+
 					{/* <li>
 						<details>
 							<summary>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 export default function Course() {
 
@@ -16,9 +16,9 @@ export default function Course() {
 	};
 	
 	const item = {
-		hidden: { y: 20, opacity: 0 },
+		hidden: { x: 500, opacity: 0 },
 		visible: {
-			y: 0,
+			x: 0,
 			opacity: 1
 		}
 	};
