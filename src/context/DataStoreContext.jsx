@@ -8,7 +8,7 @@ export function DataStoreProvider({ children }) {
 	);
 	const [ modalLoginState, setModalLoginState ] = useState(false)
 	const [ userData, setUserData ] = useState(null)
-	const [ selectedUnit, setSelectedUnit ] = useState(null)
+	const [ selectedUnit, setSelectedUnit ] = useState('2023-10-u1')
 
 	const themes = [
 		"light",

@@ -34,8 +34,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       />
       <Firebase />
       <BrowserRouter>
-        <TransitionGroup>
-          <CSSTransition key={location.key} classNames="fade" timeout={300}>
+        {/* <TransitionGroup>
+          <CSSTransition key={location.key} classNames="fade" timeout={300}> */}
             <Routes>
               <Route element={ <MainTemplate /> }>
                 <Route path='/' element={ <Home /> }/>
@@ -47,8 +47,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 </Route>
               </Route>
             </Routes>
-          </CSSTransition>
-        </TransitionGroup>
+          {/* </CSSTransition>
+        </TransitionGroup> */}
       </BrowserRouter>
     </DataStoreProvider>
   </QueryClientProvider>

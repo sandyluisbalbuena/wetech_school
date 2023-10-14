@@ -49,7 +49,7 @@ export default function SplideCourseComponent() {
 						<>
 							{units.map((unit)=>(
 								<div onClick={()=>setSelectedUnit(unit.id)} key={ unit.id } className="card animate__animated animate__fadeIn bg-base-100 w-full h-full shadow-xl mx-5 rounded-md hover:scale-110 transition-transform duration-200 hover:cursor-pointer tooltip" data-tip={ unit.name }>
-									<div className="card-body">
+									<div className="card-body p-2">
 										<img className='h-full' loading='lazy' src={"./assets/images/"+unit.name+".png"} alt="Shoes" />
 									</div>
 								</div>

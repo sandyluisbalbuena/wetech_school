@@ -58,6 +58,10 @@ export default function Course() {
 	const scheduleId = unitData?.scheduleId
 	const { data:scheduleData, isLoading } = useQuery({ queryKey:['gettingScheduleById', scheduleId], queryFn:()=>gettingScheduleById(scheduleId), enabled: !!scheduleId }) 
 
+	const addUnit = () => {
+		console.log(selectedUnit)
+	}
+
 	const container = {
 		hidden: { opacity: 1, scale: 0 },
 		visible: {
@@ -97,23 +101,19 @@ export default function Course() {
 										</figure>
 										<div className="card-body">
 											<h2 className="card-title text-md"></h2>
-											<p className='flex justify-between items-center'>
+											<div className='flex justify-between items-center'>
 												<p className='text-xs'>
-												<span className='font-bold uppercase'>Start: </span>
-												{ scheduleData.start }
+												<span className='font-bold uppercase'>Schedule: </span>
+												{ scheduleData.start } - { scheduleData.end }
 												</p>
-												<p className='text-xs'>
-												<span className='font-bold uppercase'>End: </span>
-												{ scheduleData.end }
-												</p>
-											</p>
-											<p className='flex justify-between items-center'>
+											</div>
+											<div className='flex justify-between items-center'>
 												<p className='text-xs'>
 												<span className='font-bold uppercase'>unit#</span>
 												{ unitData.id }
 												</p>
-												<button className='btn btn-primary btn-sm'>Add</button>
-											</p>
+												<button onClick={ ()=>addUnit() } className='btn btn-primary btn-sm'>Add</button>
+											</div>
 										</div>
 									</>
 								):null}
