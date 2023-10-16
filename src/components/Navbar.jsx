@@ -71,7 +71,7 @@ export default function Navbar({ user }) {
 							Profile
 						</Link>
 					</li>
-					<li>
+					{/* <li>
 						<Link
 							to="/course"
 							className={`normal-case text-sm  ${
@@ -80,7 +80,7 @@ export default function Navbar({ user }) {
 						>
 							Course
 						</Link>
-					</li>
+					</li> */}
 					<li>
 						<Link
 							to="/activity"

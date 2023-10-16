@@ -86,7 +86,7 @@ export default function SplideProfileComponent({ user }) {
 	const isSmallScreen = useMediaQuery("(max-width: 640px)");
 	const isMediumScreen = useMediaQuery("(max-width: 768px)");
 	const perPage = isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
-	const items = ["batchmates", "courses", "activities", "schedule"];
+	const items = ["schedule", "activities", "batchmates"];
 	return (
 		<div className="h-full">
 			<Splide
