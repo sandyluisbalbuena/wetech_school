@@ -93,6 +93,16 @@ export default function Navbar({ user }) {
 					</li>
 					<li>
 						<Link
+							to="/dashboard"
+							className={`normal-case text-sm  ${
+								location.pathname.includes("dashboard") ? "active" : ""
+							}`}
+						>
+							Dashboard
+						</Link>
+					</li>
+					<li>
+						<Link
 							to="/about"
 							className={`normal-case text-sm  ${
 								location.pathname.includes("about") ? "active" : ""

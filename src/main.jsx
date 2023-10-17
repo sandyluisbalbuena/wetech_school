@@ -14,6 +14,7 @@ import Activity from "./pages/Activity";
 import About from "./pages/About";
 import Course from "./pages/Course";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -39,6 +40,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 							<Route path="/profile" element={<Profile />} />
 							<Route path="/activity" element={<Activity />} />
 							<Route path="/course" element={<Course />} />
+							<Route path="/dashboard" element={<Dashboard />} />
 							<Route path="/about" element={<About />} />
 						</Route>
 					</Route>
