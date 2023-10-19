@@ -17,7 +17,7 @@ export default function SplideComponent() {
 	const navs = [
 		["./assets/images/profile-small.avif", "profile"],
 		// ["./assets/images/course-small.avif","course"],
-		["./assets/images/activity-small.avif", "activity"],
+		// ["./assets/images/activity-small.avif", "activity"],
 		["./assets/images/about-small.avif", "about"],
 		// ["https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG9ubGluZSUyMGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60","about"],
 	];
@@ -66,7 +66,7 @@ export default function SplideComponent() {
 							{nav[1]}
 						</p>
 					</div>
-				</SplideSlide>
+				</SplideSlide> //haha
 			))}
 		</Splide>
 	);

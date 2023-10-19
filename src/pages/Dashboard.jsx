@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import SplideAboutComponent from "../components/SplideAboutComponent";
+import SplideDashboardComponent from "../components/SplideDashboardComponent";
+import { useDataStore } from "../context/DataStoreContext";
 
 export default function Dashboard() {
+	const { userData } = useDataStore();
+
 	const container = {
 		hidden: { opacity: 1, scale: 0 },
 		visible: {
@@ -54,7 +57,9 @@ export default function Dashboard() {
 						<div className="my-10 h-[50vh]">
 							<div className="card h-full w-full bg-base-200/95 shadow-md shadow-primary rounded-md">
 								<div className="card-body h-full">
-									<SplideAboutComponent />
+									{userData ? (
+										<SplideDashboardComponent user={userData} />
+									) : null}
 								</div>
 							</div>
 						</div>

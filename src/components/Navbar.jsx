@@ -20,10 +20,6 @@ export default function Navbar({ user }) {
 	const location = useLocation();
 	const [currentNav, setCurrentNav] = useState("");
 
-	useEffect(() => {
-		console.log(location);
-	}, [location]);
-
 	const handleClick = (theme) => {
 		localStorage.setItem("localTheme", theme);
 		setTheme(theme);
@@ -81,7 +77,7 @@ export default function Navbar({ user }) {
 							Course
 						</Link>
 					</li> */}
-					<li>
+					{/* <li>
 						<Link
 							to="/activity"
 							className={`normal-case text-sm  ${
@@ -90,17 +86,21 @@ export default function Navbar({ user }) {
 						>
 							Activity
 						</Link>
-					</li>
-					<li>
-						<Link
-							to="/dashboard"
-							className={`normal-case text-sm  ${
-								location.pathname.includes("dashboard") ? "active" : ""
-							}`}
-						>
-							Dashboard
-						</Link>
-					</li>
+					</li> */}
+
+					{user?.role == "admin" ? (
+						<li>
+							<Link
+								to="/dashboard"
+								className={`normal-case text-sm  ${
+									location.pathname.includes("dashboard") ? "active" : ""
+								}`}
+							>
+								Dashboard
+							</Link>
+						</li>
+					) : null}
+
 					<li>
 						<Link
 							to="/about"

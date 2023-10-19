@@ -1,161 +1,40 @@
 import React from "react";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { useMediaQuery } from "@react-hook/media-query";
-import firebase from "firebase/compat/app";
-import "firebase/compat/database";
-import { useQuery } from "@tanstack/react-query";
 import { useId } from "react";
 import { useRef } from "react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { useMediaQuery } from "@react-hook/media-query";
+import { useQuery } from "@tanstack/react-query";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
 
-export default function SplideProfileComponent({ user }) {
+export default function SplideDashboardComponent({ user }) {
 	const splideRef = useRef();
 
-	const fetchStudentSchedule = async () => {
-		const batchValue = user.batch;
-		const database = firebase.database();
-		const batchesRef = database.ref("batches");
-		const unitsRef = database.ref("units");
-		const schedulesRef = database.ref("schedules");
-		const daysRef = database.ref("days");
+	const isSmallScreen = useMediaQuery("(max-width: 640px)");
+	const isMediumScreen = useMediaQuery("(max-width: 768px)");
+	const perPage = isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
+	const items = ["students"];
 
-		const scheduleFullData = {
-			batchInfo: {},
-			unitInfo: {},
-			scheduleInfo: {},
-		};
-
-		try {
-			const batchSnapshot = await batchesRef.child(batchValue).once("value");
-			if (batchSnapshot.exists()) {
-				const batchData = batchSnapshot.val();
-				scheduleFullData.batchInfo = batchData;
-
-				const daySnapshot = await daysRef.child(batchData.dayId).once("value");
-
-				if (daySnapshot.exists()) {
-					const dayData = daySnapshot.val();
-					scheduleFullData.dayInfo = dayData;
-				} else {
-					console.log("Day not found.");
-					return null;
-				}
-
-				const unitSnapshot = await unitsRef
-					.child(batchData.unitId)
-					.once("value");
-				if (unitSnapshot.exists()) {
-					const unitData = unitSnapshot.val();
-					scheduleFullData.unitInfo = unitData;
-
-					const scheduleSnapshot = await schedulesRef
-						.child(unitData.scheduleId)
-						.once("value");
-					if (scheduleSnapshot.exists()) {
-						const scheduleData = scheduleSnapshot.val();
-						scheduleFullData.scheduleInfo = scheduleData;
-
-						return scheduleFullData;
-					} else {
-						console.log("Schedule not found.");
-						return null;
-					}
-				} else {
-					console.log("Unit not found.");
-					return null;
-				}
-			} else {
-				console.log("Batch not found.");
-				return null;
-			}
-		} catch (error) {
-			console.error("Error:", error);
-			return null; // Return null in case of an error.
-		}
-	};
-
-	const { data: schedules, isLoading: scheduleIsLoading } = useQuery({
-		queryKey: ["fetchStudentSchedule", user.username],
-		queryFn: fetchStudentSchedule,
-		refetchInterval: 60000,
-	});
-
-	const fetchStudentIdsForBatches = async () => {
-		try {
-			const batchesId = user.batchesId;
-			if (!batchesId) {
-				return [];
-			}
-
-			const batchPromises = Object.keys(batchesId).map(async (batchId) => {
-				const batchSnapshot = await firebase
-					.database()
-					.ref(`batches/${batchId}/usersId`)
-					.once("value");
-				const studentIds = batchSnapshot.val();
-
-				if (!studentIds) {
-					return [];
-				}
-
-				// Fetch usersData using studentIds
-				const usersDataPromises = Object.keys(studentIds).map(
-					async (studentId) => {
-						const userSnapshot = await firebase
-							.database()
-							.ref(`users/${studentId}`)
-							.once("value");
-						return userSnapshot.val();
-					}
-				);
-
-				const usersData = await Promise.all(usersDataPromises);
-
-				return usersData;
-			});
-
-			const batchData = await Promise.all(batchPromises);
-			return batchData;
-		} catch (error) {
-			console.error("Error:", error);
-			return []; // Return an empty array in case of an error.
-		}
-	};
-
-	const { data: batches, isLoading: batchesIsLoading } = useQuery({
-		queryKey: ["fetchStudentIdsForBatches", user.username],
-		queryFn: fetchStudentIdsForBatches,
-		refetchInterval: 60000,
-	});
-
-	const fetchingBatchMates = async () => {
-		const batchValue = user.batch;
+	const fetchingStudents = async () => {
 		const database = firebase.database();
 		const usersRef = database.ref("users");
 
 		try {
-			const snapshot = await usersRef
-				.orderByChild("batch")
-				.equalTo(batchValue)
-				.once("value");
-			const usersData = [];
-
-			snapshot.forEach((childSnapshot) => {
-				const userData = childSnapshot.val();
-				if (userData.username !== user.username) {
-					usersData.push(userData);
-				}
-			});
-
+			const snapshot = await usersRef.once("value");
+			const usersData = snapshot.val();
 			return usersData;
 		} catch (error) {
 			throw error;
 		}
 	};
-	// const {data:mates, isLoading} = useQuery({queryKey:['fetchingBatchMates', user.username], queryFn:fetchingBatchMates, refetchInterval:60000})
-	const isSmallScreen = useMediaQuery("(max-width: 640px)");
-	const isMediumScreen = useMediaQuery("(max-width: 768px)");
-	const perPage = isSmallScreen ? 2 : isMediumScreen ? 4 : 5;
-	const items = ["schedule", "activities", "batchmates"];
+
+	const { data: students, isLoading: studentsIsLoading } = useQuery({
+		queryKey: ["fetchingStudents", user.username],
+		queryFn: fetchingStudents,
+		refetchInterval: 60000,
+	});
+
+	console.log(students);
 
 	return (
 		<div className="h-full">
@@ -243,7 +122,7 @@ export default function SplideProfileComponent({ user }) {
 								</>
 							) : null}
 
-							{item == "courses" ? (
+							{/* {item == "courses" ? (
 								<div className="grid grid-cols-6 gap-12 mx-10 py-20">
 									{["C++", "Web"].map((unit) => (
 										<div
@@ -301,14 +180,12 @@ export default function SplideProfileComponent({ user }) {
 													<span className="font-bold">Day: </span>
 													{schedules.dayInfo.name}
 												</p>
-												{/* <p className="lowercase text-xs">
-													{schedules.unitInfo.definition}
-												</p> */}
+											
 											</div>
 										</div>
 									) : null}
 								</div>
-							) : null}
+							) : null} */}
 						</div>
 					</SplideSlide>
 				))}
