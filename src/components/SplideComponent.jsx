@@ -66,7 +66,7 @@ export default function SplideComponent() {
 							{nav[1]}
 						</p>
 					</div>
-				</SplideSlide> //haha
+				</SplideSlide> //hahhahahahah
 			))}
 		</Splide>
 	);
