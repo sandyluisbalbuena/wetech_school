@@ -67,7 +67,6 @@ export default function SplideComponent() {
 						</p>
 					</div>
 				</SplideSlide>
-				// hahahhahaha
 			))}
 		</Splide>
 	);
